@@ -1,8 +1,5 @@
 # simplestatistics
-A statistical analysis software
-
-# Analysis-of-Variance
-A python program/software that solves one-way and two-way ANOVA
+A python program/software that solves one-way and two-way ANOVA, Plot barchart, plots piechart and performs simple and multiple regression analysis
 
 ## Prerequisite
 `Python` version `3.10+`
