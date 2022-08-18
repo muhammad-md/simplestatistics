@@ -17,7 +17,7 @@ from tkinter.messagebox import showinfo
 
 #setting the window
 window = Tk()
-window.title("ANALYSIS OF VARIANCE")
+window.title("SIMPLE STATISTICS")
 window.configure(width=1000, height=900)
 fontStyle = tkFont.Font(family="Lucida Grande", size=13)
 
@@ -518,7 +518,7 @@ class simplelinearreg:
 
                     #setting up newwindow to embed the result on
                     newwindow = Toplevel()      #TOPLEVEL() USED
-                    newwindow.title("RESULT WINDOW - ONE WAY ANOVA")
+                    newwindow.title("RESULT WINDOW - SIMPLE LINEAR REGRESSION")
                     newwindow.geometry("700x500")
 
                     #setting space to view result on inside of the new window
@@ -661,7 +661,7 @@ class multiplelinearreg:
 
                     #setting up newwindow to embed the result on
                     newwindow = Toplevel()      #TOPLEVEL() USED
-                    newwindow.title("RESULT WINDOW - ONE WAY ANOVA")
+                    newwindow.title("RESULT WINDOW - MULTIPLE LINEAR REGRESSION")
                     newwindow.geometry("700x500")
 
                     #setting space to view result on inside of the new window
