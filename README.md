@@ -5,6 +5,6 @@ A python program/software that performs one-way and two-way ANOVA, Plot barchart
 `Python` version `3.10+`
 
 ## Component
-* Bar and pie chart
+* Bar and pie chart for data visualization
 * One way and two way Analysis of Variance
 * Simple linear regression and Multiple linear regression
