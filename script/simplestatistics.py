@@ -18,7 +18,7 @@ from tkinter.messagebox import showinfo
 #setting the window
 window = Tk()
 window.title("SIMPLE STATISTICS")
-window.configure(width=1000, height=900)
+window.geometry("700x500")
 fontStyle = tkFont.Font(family="Lucida Grande", size=13)
 
 
@@ -335,8 +335,8 @@ class Barchart:
                     data = pd.read_excel(file)
                     var1 = data['%s' %(var11)].tolist()
                     var2 = data['%s' %(var22)].tolist()
-                    yy = np.array(var2)
-                    plt.bar(var1, yy)
+                    var2 = np.array(var2)
+                    plt.bar(var1, var2)
                     plt.ylabel("networth")
                     plt.xlabel("companies")
                     # Show plot
@@ -412,8 +412,8 @@ class Piechart:
                     data = pd.read_excel(file)
                     var1 = data['%s' %(var11)].tolist()
                     var2 = data['%s' %(var22)].tolist()
-                    y = np.array(var2)
-                    plt.pie(y, labels = var1)
+                    var2 = np.array(var2)
+                    plt.pie(var2, labels = var1)
                     plt.legend()
                     plt.show()
 
@@ -491,29 +491,29 @@ class simplelinearreg:
                     data = pd.read_excel(file)
                     
                     #getting the values in the selected columns
-                    columnindependent_var = data['%s' %(independent_var)]
-                    columndependent_var = data['%s' %(dependent_var)]
+                    independent_var_column = data['%s' %(independent_var)]
+                    dependent_var_column = data['%s' %(dependent_var)]
 
-                    x = list(columnindependent_var)
-                    y = list(columndependent_var)
+                    independent_var_list = list(independent_var_column)
+                    dependent_var_list = list(dependent_var_column)
 
-                    x = np.array(x).reshape((-1, 1))
-                    y = np.array(y)
+                    independent_var = np.array(independent_var_list).reshape((-1, 1))
+                    dependent_var = np.array(dependent_var_list)
 
-                    x = sm.add_constant(x)
-                    model = sm.OLS(y, x)
+                    independent_var = sm.add_constant(independent_var)
+                    model = sm.OLS(dependent_var, independent_var)
                     result = model.fit()
                     summary = result.summary()
                     print(result.summary())
 
-                    model2 = LinearRegression().fit(x, y)
+                    model2 = LinearRegression().fit(independent_var, dependent_var)
                     interc = model2.intercept_
                     print("Intercept: ", interc)
 
                     slop = model2.coef_
                     print("Slope: ", slop)
 
-                    y_pred = model2.predict(x)
+                    y_pred = model2.predict(independent_var)
                     print("predicted response: ", y_pred)
 
                     #setting up newwindow to embed the result on
@@ -627,36 +627,36 @@ class multiplelinearreg:
                     data = pd.read_excel(file)
                     
                     #getting the values in the selected columns
-                    columnindependent_var1 = data['%s' %(independent_var1)]
-                    columnindependent_var2 = data['%s' %(independent_var2)]
-                    columndependent_var = data['%s' %(dependent_var)]
+                    independent_var1_column = data['%s' %(independent_var1)]
+                    independent_var2_column = data['%s' %(independent_var2)]
+                    dependent_var_column = data['%s' %(dependent_var)]
 
-                    x = []
-                    x1 = list(columnindependent_var1)
-                    x2 = list(columnindependent_var2)
-                    lengthx1 = len(x1)
-                    for i in range(0, lengthx1):
-                        x.append([x1[i], x2[i]])
-                    print(x)
-                    y = list(columndependent_var)
+                    independent_vars = []
+                    independent_var1 = list(independent_var1_column)
+                    independent_var2 = list(independent_var2_column)
+                    length = len(independent_var1)
+                    for i in range(0, length):
+                        independent_vars.append([independent_var1[i], independent_var2[i]])
+                    print(independent_vars)
+                    dependent_var = list(dependent_var_column)
 
-                    x = np.array(x)
-                    y = np.array(y)
+                    independent_vars = np.array(independent_vars)
+                    dependent_var = np.array(dependent_var)
 
-                    x = sm.add_constant(x)
-                    model = sm.OLS(y, x)
+                    independent_vars = sm.add_constant(independent_vars)
+                    model = sm.OLS(dependent_var, independent_vars)
                     result = model.fit()
                     summary = result.summary()
                     print(result.summary())
 
-                    model2 = LinearRegression().fit(x, y)
+                    model2 = LinearRegression().fit(independent_vars, dependent_var)
                     interc = model2.intercept_
                     print("Intercept: ", interc)
 
                     slop = model2.coef_
                     print("Slope: ", slop)
 
-                    y_pred = model2.predict(x)
+                    y_pred = model2.predict(independent_vars)
                     print("predicted response: ", y_pred)
 
                     #setting up newwindow to embed the result on
