@@ -460,8 +460,8 @@ class simplelinearreg:
         fontStyle1 = tkFont.Font(family="Lucida Grande", size=13)
 
         #back button to view previous page, that is the main page
-        self.btn4 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
-        self.btn4.place(relx = 0.90, rely = 0.84, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
+        self.btn1.place(relx = 0.90, rely = 0.84, anchor = CENTER)
         
         self.label1 = Label(self.master, text="File Selected:", font = fontStyle)
         self.label1.place(relx = 0.3, rely = 0.15, anchor = CENTER)
@@ -530,8 +530,8 @@ class simplelinearreg:
                     self.label4= Label(newwindow, text="", textvariable=aovspace, font = fontStyle)
                     self.label4.place(relx = 0.5, rely = 0.25, anchor = CENTER)
 
-                    self.label99= Label(newwindow, text="", textvariable=aovspace2, font = fontStyle)
-                    self.label99.place(relx = 0.5, rely = 0.60, anchor = CENTER)
+                    self.label5= Label(newwindow, text="", textvariable=aovspace2, font = fontStyle)
+                    self.label5.place(relx = 0.5, rely = 0.60, anchor = CENTER)
 
                     #Run new window
                     newwindow.mainloop()
@@ -560,30 +560,31 @@ class simplelinearreg:
             selectedfilespace.set(mainfilename)
 
         #Buttons
-        self.label5= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle)
-        self.label5.place(relx = 0.5, rely = 0.15, anchor = CENTER)
+        self.label6= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle)
+        self.label6.place(relx = 0.5, rely = 0.15, anchor = CENTER)
         #creating a checkbox to allow view boxplot
         #self.btn5 = tk.Checkbutton(self.master, text="show boxplot", command=boxplot, font=fontStyle)
         #self.btn5.place(relx = 0.5, rely = 0.33  , anchor = CENTER)
-        self.btn6 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file)
-        self.btn6.place(relx = 0.5, rely = 0.07, anchor = CENTER)
-        self.btn7 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse)
-        self.btn7.place(relx = 0.5, rely = 0.40, anchor = CENTER)
+        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file)
+        self.btn2.place(relx = 0.5, rely = 0.07, anchor = CENTER)
+        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse)
+        self.btn3.place(relx = 0.5, rely = 0.40, anchor = CENTER)
                         
         #function to clear the current page to view the previous page elements
     def load_back(self):
         self.entry_1.destroy()
-      #  self.entry_2.destroy()
-       # self.label1.destroy()
-        #self.label2.destroy()
-        #self.label3.destroy()
-        #self.label5.destroy()
-        #self.btn4.destroy()
-        #self.btn5.destroy()
-        #self.btn6.destroy()
-        #self.btn7.destroy()
-        #excelfile.clear()
-        #self.another = mainwindow(self.master)
+        self.entry_2.destroy()
+        self.label1.destroy()
+        self.label2.destroy()
+        self.label3.destroy()
+        self.label6.destroy()
+        self.btn1.destroy()
+        self.btn2.destroy()
+        self.btn3.destroy()
+        excelfile.clear()
+        
+        self.another = mainwindow(self.master)
+
 
 class multiplelinearreg:
     def __init__(self, master):
@@ -592,8 +593,8 @@ class multiplelinearreg:
         fontStyle1 = tkFont.Font(family="Lucida Grande", size=13)
 
         #back button to view previous page, that is the main page
-        self.btn4 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
-        self.btn4.place(relx = 0.90, rely = 0.84, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
+        self.btn1.place(relx = 0.90, rely = 0.84, anchor = CENTER)
         
         self.label1 = Label(self.master, text="File Selected:", font = fontStyle)
         self.label1.place(relx = 0.3, rely = 0.15, anchor = CENTER)
@@ -670,11 +671,11 @@ class multiplelinearreg:
                     aovspace.set(summary)
                     aovspace2.set(y_pred)
 
-                    self.label4= Label(newwindow, text="", textvariable=aovspace, font = fontStyle)
-                    self.label4.place(relx = 0.5, rely = 0.25, anchor = CENTER)
+                    self.label5= Label(newwindow, text="", textvariable=aovspace, font = fontStyle)
+                    self.label5.place(relx = 0.5, rely = 0.25, anchor = CENTER)
 
-                    self.label99= Label(newwindow, text="", textvariable=aovspace2, font = fontStyle)
-                    self.label99.place(relx = 0.5, rely = 0.60, anchor = CENTER)
+                    self.label6= Label(newwindow, text="", textvariable=aovspace2, font = fontStyle)
+                    self.label6.place(relx = 0.5, rely = 0.60, anchor = CENTER)
 
                     #Run new window
                     newwindow.mainloop()
@@ -703,30 +704,32 @@ class multiplelinearreg:
             selectedfilespace.set(mainfilename)
 
         #Buttons
-        self.label5= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle)
-        self.label5.place(relx = 0.5, rely = 0.15, anchor = CENTER)
+        self.label7= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle)
+        self.label7.place(relx = 0.5, rely = 0.15, anchor = CENTER)
         #creating a checkbox to allow view boxplot
         #self.btn5 = tk.Checkbutton(self.master, text="show boxplot", command=boxplot, font=fontStyle)
         #self.btn5.place(relx = 0.5, rely = 0.33  , anchor = CENTER)
-        self.btn6 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file)
-        self.btn6.place(relx = 0.5, rely = 0.07, anchor = CENTER)
-        self.btn7 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse)
-        self.btn7.place(relx = 0.5, rely = 0.40, anchor = CENTER)
+        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file)
+        self.btn2.place(relx = 0.5, rely = 0.07, anchor = CENTER)
+        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse)
+        self.btn3.place(relx = 0.5, rely = 0.40, anchor = CENTER)
                         
         #function to clear the current page to view the previous page elements
     def load_back(self):
         self.entry_1.destroy()
-      #  self.entry_2.destroy()
-       # self.label1.destroy()
-        #self.label2.destroy()
-        #self.label3.destroy()
-        #self.label5.destroy()
-        #self.btn4.destroy()
-        #self.btn5.destroy()
-        #self.btn6.destroy()
-        #self.btn7.destroy()
-        #excelfile.clear()
-        #self.another = mainwindow(self.master)
+        self.entry_2.destroy()
+        self.entry_3.destroy()
+        self.label1.destroy()
+        self.label2.destroy()
+        self.label3.destroy()
+        self.label4.destroy()
+        self.label7.destroy()
+        self.btn1.destroy()
+        self.btn2.destroy()
+        self.btn3.destroy()
+        excelfile.clear()
+
+        self.another = mainwindow(self.master)
 
 
 
