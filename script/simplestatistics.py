@@ -14,16 +14,17 @@ from tkinter import filedialog as fd
 from tkinter import messagebox
 from tkinter.messagebox import showinfo
 
-
 #setting the window
 window = Tk()
 window.title("SIMPLE STATISTICS")
-window.geometry("700x500")
+window.geometry("800x500")
 fontStyle = tkFont.Font(family="Lucida Grande", size=13)
 
-
 #list o send the excel file for pd to read
-excelfile = list()
+excelfile = []
+predicted_vals = []
+slops1 = []
+slops2 = []
 
 #first window            
 class mainwindow:
@@ -136,7 +137,7 @@ class Oneway:
                     #setting up newwindow to embed the result on
                     newwindow = Toplevel()      #TOPLEVEL() USED
                     newwindow.title("RESULT WINDOW - ONE WAY ANOVA")
-                    newwindow.geometry("700x500")
+                    newwindow.geometry("800x500")
 
                     #setting space to view result on inside of the new window
                     aovspace = tk.StringVar()
@@ -240,7 +241,7 @@ class Twoway:
                     #setting up newwindow to embed the result on
                     newwindow = Toplevel()      #TOPLEVEL() USED
                     newwindow.title("RESULT WINDOW - ONE WAY ANOVA")
-                    newwindow.geometry("700x500")
+                    newwindow.geometry("800x500")
                     
                     #setting space to view result on inside of the new window
                     aovspace = tk.StringVar()
@@ -485,14 +486,14 @@ class simplelinearreg:
                 messagebox.showinfo("showinfo", "Please, select a file")
             #Continue with the analysis if a file is selected
             else:
-                dependent_var = (self.entry_1.get())
-                independent_var = (self.entry_2.get())
+                entry_1 = (self.entry_1.get())
+                entry_2 = (self.entry_2.get())
                 for file in excelfile:
                     data = pd.read_excel(file)
                     
                     #getting the values in the selected columns
-                    independent_var_column = data['%s' %(independent_var)]
-                    dependent_var_column = data['%s' %(dependent_var)]
+                    independent_var_column = data['%s' %(entry_2)]
+                    dependent_var_column = data['%s' %(entry_1)]
 
                     independent_var_list = list(independent_var_column)
                     dependent_var_list = list(dependent_var_column)
@@ -516,22 +517,33 @@ class simplelinearreg:
                     y_pred = model2.predict(independent_var)
                     print("predicted response: ", y_pred)
 
+                    equation = "EQUATION: "+ " "+ str(entry_1) + " " + "=" +" " + str(round(interc, 2)) + " " + "+" +" " + str(round(slop[1], 2))+str(entry_2)
+                    
+                    for num in independent_var_list:
+                        predicted_val = "PREDICTED VALUE OF "+ str(entry_1) + " "+ "IF "+ str(entry_2)+ " " + "= "+ str(num) + " " + "is " + str(interc+ (slop[1]*num))
+                        predicted_vals.append("%s \n" %(predicted_val))
+
                     #setting up newwindow to embed the result on
                     newwindow = Toplevel()      #TOPLEVEL() USED
                     newwindow.title("RESULT WINDOW - SIMPLE LINEAR REGRESSION")
-                    newwindow.geometry("700x500")
-
+                    newwindow.geometry("800x500")
+                    
                     #setting space to view result on inside of the new window
                     aovspace = tk.StringVar()
                     aovspace2 = tk.StringVar()
+                    aovspace3 = tk.StringVar()
                     aovspace.set(summary)
-                    aovspace2.set(y_pred)
+                    aovspace2.set(equation)
+                    aovspace3.set(predicted_vals)
 
                     self.label4= Label(newwindow, text="", textvariable=aovspace, font = fontStyle)
-                    self.label4.place(relx = 0.5, rely = 0.25, anchor = CENTER)
+                    self.label4.pack(fill="y")
 
                     self.label5= Label(newwindow, text="", textvariable=aovspace2, font = fontStyle)
-                    self.label5.place(relx = 0.5, rely = 0.60, anchor = CENTER)
+                    self.label5.pack(fill="y")
+
+                    self.label5= Label(newwindow, text="", textvariable=aovspace3, font = fontStyle)
+                    self.label5.pack(fill="y")
 
                     #Run new window
                     newwindow.mainloop()
@@ -582,6 +594,7 @@ class simplelinearreg:
         self.btn2.destroy()
         self.btn3.destroy()
         excelfile.clear()
+        predicted_vals.clear()
         
         self.another = mainwindow(self.master)
 
@@ -621,16 +634,16 @@ class multiplelinearreg:
                 messagebox.showinfo("showinfo", "Please, select a file")
             #Continue with the analysis if a file is selected
             else:
-                dependent_var = (self.entry_1.get())
-                independent_var1 = (self.entry_2.get())
-                independent_var2 = (self.entry_3.get())
+                entry_1 = (self.entry_1.get())
+                entry_2 = (self.entry_2.get())
+                entry_3 = (self.entry_3.get())
                 for file in excelfile:
                     data = pd.read_excel(file)
                     
                     #getting the values in the selected columns
-                    independent_var1_column = data['%s' %(independent_var1)]
-                    independent_var2_column = data['%s' %(independent_var2)]
-                    dependent_var_column = data['%s' %(dependent_var)]
+                    independent_var1_column = data['%s' %(entry_2)]
+                    independent_var2_column = data['%s' %(entry_3)]
+                    dependent_var_column = data['%s' %(entry_1)]
 
                     independent_vars = []
                     independent_var1 = list(independent_var1_column)
@@ -660,22 +673,38 @@ class multiplelinearreg:
                     y_pred = model2.predict(independent_vars)
                     print("predicted response: ", y_pred)
 
+                    equation = "EQUATION: "+ " "+ str(entry_1) + " " + "=" +" " + str(round(interc, 2)) + " " + "+" +" " + str(round(slop[1], 2))+str(entry_2) + " " + "+" + str(round(slop[2], 2))+str(entry_3)
+
+                    for num in independent_var1:
+                        slops1.append(slop[1]*num)
+                    for num in independent_var2:
+                        slops2.append(slop[2]*num)
+                    
+                    for num in range(0, len(independent_var1)):
+                        predicted_val = "PREDICTED VALUE OF "+ str(entry_1) + " "+ "IF "+ str(entry_2)+ " = "+ str(independent_var1[num])+" and "+ str(entry_3)+ " = "+str(independent_var2[num]) + " is " + str(interc+ (slops1[num]) + (slops2[num]))
+                        predicted_vals.append("%s \n" %(predicted_val))
+
                     #setting up newwindow to embed the result on
                     newwindow = Toplevel()      #TOPLEVEL() USED
                     newwindow.title("RESULT WINDOW - MULTIPLE LINEAR REGRESSION")
-                    newwindow.geometry("700x500")
+                    newwindow.geometry("800x500")
 
                     #setting space to view result on inside of the new window
                     aovspace = tk.StringVar()
                     aovspace2 = tk.StringVar()
+                    aovspace3 = tk.StringVar()
                     aovspace.set(summary)
-                    aovspace2.set(y_pred)
+                    aovspace2.set(equation)
+                    aovspace3.set(predicted_vals)
 
                     self.label5= Label(newwindow, text="", textvariable=aovspace, font = fontStyle)
-                    self.label5.place(relx = 0.5, rely = 0.25, anchor = CENTER)
+                    self.label5.pack(fill="y")
 
                     self.label6= Label(newwindow, text="", textvariable=aovspace2, font = fontStyle)
-                    self.label6.place(relx = 0.5, rely = 0.60, anchor = CENTER)
+                    self.label6.pack(fill="y")
+
+                    self.label77= Label(newwindow, text="", textvariable=aovspace3, font = fontStyle)
+                    self.label77.pack(fill="y")
 
                     #Run new window
                     newwindow.mainloop()
@@ -728,6 +757,9 @@ class multiplelinearreg:
         self.btn2.destroy()
         self.btn3.destroy()
         excelfile.clear()
+        predicted_vals.clear()
+        slops1.clear()
+        slops2.clear()
 
         self.another = mainwindow(self.master)
 
