@@ -3,11 +3,10 @@ import numpy as np
 import os
 import pandas as pd
 import statsmodels.api as sm
-from statsmodels.formula.api import ols
-from sklearn.linear_model import LinearRegression
-import tkinter
 import tkinter as tk
 import tkinter.font as tkFont
+from statsmodels.formula.api import ols
+from sklearn.linear_model import LinearRegression
 from tkinter import *
 from tkinter.ttk import *
 from tkinter import filedialog as fd
@@ -520,32 +519,37 @@ class simplelinearreg:
                     equation = "EQUATION: "+ " "+ str(entry_1) + " " + "=" +" " + str(round(interc, 2)) + " " + "+" +" " + str(round(slop[1], 2))+str(entry_2)
                     
                     for num in independent_var_list:
-                        predicted_val = "PREDICTED VALUE OF "+ str(entry_1) + " "+ "IF "+ str(entry_2)+ " " + "= "+ str(num) + " " + "is " + str(interc+ (slop[1]*num))
+                        predicted_val = "PREDICTED VALUE OF "+ str(entry_1) + " "+ "IF "+ str(entry_2)+ " " + "= "+ str(num) + " " + "is " + str(round(interc+ (slop[1]*num), 2))
                         predicted_vals.append("%s \n" %(predicted_val))
 
                     #setting up newwindow to embed the result on
                     newwindow = Toplevel()      #TOPLEVEL() USED
                     newwindow.title("RESULT WINDOW - SIMPLE LINEAR REGRESSION")
-                    newwindow.geometry("800x500")
                     
                     #setting space to view result on inside of the new window
                     aovspace = tk.StringVar()
                     aovspace2 = tk.StringVar()
-                    aovspace3 = tk.StringVar()
+                    
                     aovspace.set(summary)
                     aovspace2.set(equation)
-                    aovspace3.set(predicted_vals)
 
                     self.label4= Label(newwindow, text="", textvariable=aovspace, font = fontStyle)
                     self.label4.pack(fill="y")
 
                     self.label5= Label(newwindow, text="", textvariable=aovspace2, font = fontStyle)
                     self.label5.pack(fill="y")
+                    
+                    for i in range(0, len(independent_var_list)):
+                        independent_var_list[i] = tk.StringVar()
+                        independent_var_list[i].set(predicted_vals[i])
+                        self.label5= Label(newwindow, text="", textvariable=independent_var_list[i], font = fontStyle)
+                        self.label5.pack(fill="y")
+                        print(predicted_vals[i])
 
-                    self.label5= Label(newwindow, text="", textvariable=aovspace3, font = fontStyle)
-                    self.label5.pack(fill="y")
-
-                    #Run new window
+                    #set the height and width and run newwindow
+                    height = newwindow.winfo_screenheight() #get your Windows height size 
+                    newwindow.geometry("%dx%d" % (800, height))
+                    newwindow.resizable(False,False)
                     newwindow.mainloop()
         #def boxplot():
          #   dependent_var = (self.entry_1.get())
@@ -681,21 +685,18 @@ class multiplelinearreg:
                         slops2.append(slop[2]*num)
                     
                     for num in range(0, len(independent_var1)):
-                        predicted_val = "PREDICTED VALUE OF "+ str(entry_1) + " "+ "IF "+ str(entry_2)+ " = "+ str(independent_var1[num])+" and "+ str(entry_3)+ " = "+str(independent_var2[num]) + " is " + str(interc+ (slops1[num]) + (slops2[num]))
+                        predicted_val = "PREDICTED VALUE OF "+ str(entry_1) + " "+ "IF "+ str(entry_2)+ " = "+ str(independent_var1[num])+" and "+ str(entry_3)+ " = "+str(independent_var2[num]) + " is " + str(round(interc+ (slops1[num]) + (slops2[num]), 2))
                         predicted_vals.append("%s \n" %(predicted_val))
 
                     #setting up newwindow to embed the result on
                     newwindow = Toplevel()      #TOPLEVEL() USED
                     newwindow.title("RESULT WINDOW - MULTIPLE LINEAR REGRESSION")
-                    newwindow.geometry("800x500")
 
                     #setting space to view result on inside of the new window
                     aovspace = tk.StringVar()
                     aovspace2 = tk.StringVar()
-                    aovspace3 = tk.StringVar()
                     aovspace.set(summary)
                     aovspace2.set(equation)
-                    aovspace3.set(predicted_vals)
 
                     self.label5= Label(newwindow, text="", textvariable=aovspace, font = fontStyle)
                     self.label5.pack(fill="y")
@@ -703,10 +704,17 @@ class multiplelinearreg:
                     self.label6= Label(newwindow, text="", textvariable=aovspace2, font = fontStyle)
                     self.label6.pack(fill="y")
 
-                    self.label77= Label(newwindow, text="", textvariable=aovspace3, font = fontStyle)
-                    self.label77.pack(fill="y")
+                    for i in range(0, len(independent_var1)):
+                        independent_var1[i] = tk.StringVar()
+                        independent_var1[i].set(predicted_vals[i])
+                        self.label77= Label(newwindow, text="", textvariable=independent_var1[i], font = fontStyle)
+                        self.label77.pack(fill="y")
+                        print(predicted_vals[i])
 
-                    #Run new window
+                    #set the height and width and run newwindow
+                    height = newwindow.winfo_screenheight() #get your Windows height size 
+                    newwindow.geometry("%dx%d" % (800, height))
+                    newwindow.resizable(False,False)
                     newwindow.mainloop()
         #def boxplot():
          #   dependent_var = (self.entry_1.get())
