@@ -30,12 +30,18 @@ slops2 = []
 class mainwindow:
     def __init__(self, master):
         self.master = master
-        self.btn1 = tk.Button(self.master, text ="ONE-WAY ANOVA", font = fontStyle1, command = self.clearpage1).place(relx = 0.5, rely = 0.40, anchor = CENTER)
-        self.btn2 = tk.Button(self.master, text ="TWO-WAY ANOVA", font = fontStyle1, command = self.clearpage2).place(relx = 0.5, rely = 0.55, anchor = CENTER)
-        self.btn3 = tk.Button(self.master, text ="BAR CHART", font = fontStyle1, command = self.clearpage3).place(relx = 0.5, rely = 0.10, anchor = CENTER)
-        self.btn4 = tk.Button(self.master, text ="PIE CHART", font = fontStyle1, command = self.clearpage4).place(relx = 0.5, rely = 0.25, anchor = CENTER)
-        self.btn5 = tk.Button(self.master, text ="SIMPLE LINEAR REGRESSION", font = fontStyle1, command = self.clearpage5).place(relx = 0.5, rely = 0.70, anchor = CENTER)
-        self.btn6 = tk.Button(self.master, text ="MULTIPLE LINEAR REGRESSION", font = fontStyle1, command = self.clearpage6).place(relx = 0.5, rely = 0.85, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="ONE-WAY ANOVA", font = fontStyle1, command = self.clearpage1)
+        self.btn1.place(relx = 0.5, rely = 0.40, anchor = CENTER)
+        self.btn2 = tk.Button(self.master, text ="TWO-WAY ANOVA", font = fontStyle1, command = self.clearpage2)
+        self.btn2.place(relx = 0.5, rely = 0.55, anchor = CENTER)
+        self.btn3 = tk.Button(self.master, text ="BAR CHART", font = fontStyle1, command = self.clearpage3)
+        self.btn3.place(relx = 0.5, rely = 0.10, anchor = CENTER)
+        self.btn4 = tk.Button(self.master, text ="PIE CHART", font = fontStyle1, command = self.clearpage4)
+        self.btn4.place(relx = 0.5, rely = 0.25, anchor = CENTER)
+        self.btn5 = tk.Button(self.master, text ="SIMPLE LINEAR REGRESSION", font = fontStyle1, command = self.clearpage5)
+        self.btn5.place(relx = 0.5, rely = 0.70, anchor = CENTER)
+        self.btn6 = tk.Button(self.master, text ="MULTIPLE LINEAR REGRESSION", font = fontStyle1, command = self.clearpage6)
+        self.btn6.place(relx = 0.5, rely = 0.85, anchor = CENTER)
 
     #functions to clear the page to view the next page elements
     def clearpage1(self):
@@ -94,14 +100,20 @@ class Oneway:
         self.master = master
 
         #back button to view previous page, that is the main page
-        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle2, command = self.load_back).place(relx = 0.90, rely = 0.84, anchor = CENTER)
-        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2).place(relx = 0.3, rely = 0.15, anchor = CENTER)
-        self.label2 = Label(self.master, text="Dependent Variable: ", font = fontStyle2).place(relx = 0.3, rely = 0.20, anchor = CENTER)
-        self.label3= Label(self.master, text="Independent Variable: ", font = fontStyle2).place(relx = 0.3, rely = 0.25, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle2, command = self.load_back)
+        self.btn1.place(relx = 0.90, rely = 0.84, anchor = CENTER)
+        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2)
+        self.label1.place(relx = 0.3, rely = 0.15, anchor = CENTER)
+        self.label2 = Label(self.master, text="Dependent Variable: ", font = fontStyle2)
+        self.label2.place(relx = 0.3, rely = 0.20, anchor = CENTER)
+        self.label3= Label(self.master, text="Independent Variable: ", font = fontStyle2)
+        self.label3.place(relx = 0.3, rely = 0.25, anchor = CENTER)
 
         #entry box for dependent and independent variavles
-        self.entry_1 = Entry(self.master).place(relx = 0.5, rely = 0.20, anchor = CENTER)
-        self.entry_2 = Entry(self.master).place(relx = 0.5, rely = 0.25, anchor = CENTER)
+        self.entry_1 = Entry(self.master)
+        self.entry_1.place(relx = 0.5, rely = 0.20, anchor = CENTER)
+        self.entry_2 = Entry(self.master)
+        self.entry_2.place(relx = 0.5, rely = 0.25, anchor = CENTER)
 
         #function for all the one way anova analysis   
         def analyse():
@@ -125,7 +137,8 @@ class Oneway:
                     #setting space to view result on inside of the new window
                     space1 = tk.StringVar()
                     space1.set(aov)
-                    self.label4= Label(newwindow, text="", textvariable=space1, font = fontStyle2).place(relx = 0.5, rely = 0.10, anchor = CENTER)
+                    self.label4= Label(newwindow, text="", textvariable=space1, font = fontStyle2)
+                    self.label4.place(relx = 0.5, rely = 0.10, anchor = CENTER)
 
                     #Run new window
                     newwindow.mainloop()
@@ -153,11 +166,15 @@ class Oneway:
             selectedfilespace.set(mainfilename)
 
         #Buttons
-        self.label5= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2).place(relx = 0.5, rely = 0.15, anchor = CENTER)
+        self.label5= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2)
+        self.label5.place(relx = 0.5, rely = 0.15, anchor = CENTER)
         #creating a checkbox to allow view boxplot
-        self.btn2 = tk.Checkbutton(self.master, text="show boxplot", command=boxplot, font=fontStyle2).place(relx = 0.5, rely = 0.33  , anchor = CENTER)
-        self.btn3 = tk.Button(self.master,text='Open a File',font= fontStyle2, command=select_file).place(relx = 0.5, rely = 0.07, anchor = CENTER)
-        self.btn4 = tk.Button(self.master,text='Analyse',font= fontStyle2, command=analyse).place(relx = 0.5, rely = 0.40, anchor = CENTER)
+        self.btn2 = tk.Checkbutton(self.master, text="show boxplot", command=boxplot, font=fontStyle2)
+        self.btn2.place(relx = 0.5, rely = 0.33  , anchor = CENTER)
+        self.btn3 = tk.Button(self.master,text='Open a File',font= fontStyle2, command=select_file)
+        self.btn3.place(relx = 0.5, rely = 0.07, anchor = CENTER)
+        self.btn4 = tk.Button(self.master,text='Analyse',font= fontStyle2, command=analyse)
+        self.btn4.place(relx = 0.5, rely = 0.40, anchor = CENTER)
                         
     #function to clear the current page to view the previous page elements
     def load_back(self):
@@ -180,16 +197,24 @@ class Twoway:
         # keep `root` in `self.master`
         self.master = master
         #back button to view previous page, that is the main page
-        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back).place(relx = 0.90, rely = 0.84, anchor = CENTER)
-        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2).place(relx = 0.3, rely = 0.15, anchor = CENTER)
-        self.label2 = Label(self.master, text="Dependent Variable: ", font = fontStyle2).place(relx = 0.3, rely = 0.20, anchor = CENTER)
-        self.label3= Label(self.master, text="Independent Variable one : ", font = fontStyle2).place(relx = 0.3, rely = 0.25, anchor = CENTER)
-        self.label4= Label(self.master, text="Independent Variable two : ", font = fontStyle2).place(relx = 0.3, rely = 0.30, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
+        self.btn1.place(relx = 0.90, rely = 0.84, anchor = CENTER)
+        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2)
+        self.label1.place(relx = 0.3, rely = 0.15, anchor = CENTER)
+        self.label2 = Label(self.master, text="Dependent Variable: ", font = fontStyle2)
+        self.label2.place(relx = 0.3, rely = 0.20, anchor = CENTER)
+        self.label3= Label(self.master, text="Independent Variable one : ", font = fontStyle2)
+        self.label3.place(relx = 0.3, rely = 0.25, anchor = CENTER)
+        self.label4= Label(self.master, text="Independent Variable two : ", font = fontStyle2)
+        self.label4.place(relx = 0.3, rely = 0.30, anchor = CENTER)
 
         #entry box for dependent and independent variavles
-        self.entry_1 = Entry(self.master).place(relx = 0.5, rely = 0.20, anchor = CENTER)
-        self.entry_2 = Entry(self.master).place(relx = 0.5, rely = 0.25, anchor = CENTER)
-        self.entry_3 = Entry(self.master).place(relx = 0.5, rely = 0.30, anchor = CENTER)
+        self.entry_1 = Entry(self.master)
+        self.entry_1.place(relx = 0.5, rely = 0.20, anchor = CENTER)
+        self.entry_2 = Entry(self.master)
+        self.entry_2.place(relx = 0.5, rely = 0.25, anchor = CENTER)
+        self.entry_3 = Entry(self.master)
+        self.entry_3.place(relx = 0.5, rely = 0.30, anchor = CENTER)
 
         #function for all the two way anova analysis
         def analyse():
@@ -214,7 +239,8 @@ class Twoway:
                     #setting space to view result on inside of the new window
                     space1 = tk.StringVar()
                     space1.set(aov)
-                    self.label5= Label(newwindow, text="", textvariable=space1, font = fontStyle2).place(relx = 0.5, rely = 0.10, anchor = CENTER)
+                    self.label5= Label(newwindow, text="", textvariable=space1, font = fontStyle2)
+                    self.label5.place(relx = 0.5, rely = 0.10, anchor = CENTER)
                     #Run new window
                     newwindow.mainloop()
 
@@ -244,11 +270,15 @@ class Twoway:
             selectedfilespace.set(mainfilename)
 
         #Buttons
-        self.label6= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2).place(relx = 0.5, rely = 0.15, anchor = CENTER)
+        self.label6= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2)
+        self.label6.place(relx = 0.5, rely = 0.15, anchor = CENTER)
         #creating a checkbox to allow view boxplot
-        self.btn2 = tk.Checkbutton(self.master, text="show boxplot", command=boxplot, font=fontStyle2).place(relx = 0.5, rely = 0.36  , anchor = CENTER)
-        self.btn3 = tk.Button(self.master,text='Open a File',font= fontStyle2, command=select_file).place(relx = 0.5, rely = 0.07, anchor = CENTER)
-        self.btn4 = tk.Button(self.master,text='Analyse',font= fontStyle2, command=analyse).place(relx = 0.5, rely = 0.43, anchor = CENTER)
+        self.btn2 = tk.Checkbutton(self.master, text="show boxplot", command=boxplot, font=fontStyle2)
+        self.btn2.place(relx = 0.5, rely = 0.36  , anchor = CENTER)
+        self.btn3 = tk.Button(self.master,text='Open a File',font= fontStyle2, command=select_file)
+        self.btn3.place(relx = 0.5, rely = 0.07, anchor = CENTER)
+        self.btn4 = tk.Button(self.master,text='Analyse',font= fontStyle2, command=analyse)
+        self.btn4.place(relx = 0.5, rely = 0.43, anchor = CENTER)
               
     #function to clear the current page to view the previous page elements
     def load_back(self):
@@ -272,14 +302,20 @@ class Barchart:
         self.master = master
 
         #back button to view previous page, that is the main page
-        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back).place(relx = 0.90, rely = 0.84, anchor = CENTER)
-        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2).place(relx = 0.3, rely = 0.15, anchor = CENTER)
-        self.label2 = Label(self.master, text="Variable one(Labels): ", font = fontStyle2).place(relx = 0.3, rely = 0.20, anchor = CENTER)
-        self.label3= Label(self.master, text="Variable Two: ", font = fontStyle2).place(relx = 0.3, rely = 0.25, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
+        self.btn1.place(relx = 0.90, rely = 0.84, anchor = CENTER)
+        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2)
+        self.label1.place(relx = 0.3, rely = 0.15, anchor = CENTER)
+        self.label2 = Label(self.master, text="Variable one(Labels): ", font = fontStyle2)
+        self.label2.place(relx = 0.3, rely = 0.20, anchor = CENTER)
+        self.label3= Label(self.master, text="Variable Two: ", font = fontStyle2)
+        self.label3.place(relx = 0.3, rely = 0.25, anchor = CENTER)
 
         #entry box for dependent and independent variavles
-        self.entry_1 = Entry(self.master).place(relx = 0.5, rely = 0.20, anchor = CENTER)
-        self.entry_2 = Entry(self.master).place(relx = 0.5, rely = 0.25, anchor = CENTER)
+        self.entry_1 = Entry(self.master)
+        self.entry_1.place(relx = 0.5, rely = 0.20, anchor = CENTER)
+        self.entry_2 = Entry(self.master)
+        self.entry_2.place(relx = 0.5, rely = 0.25, anchor = CENTER)
     
         #function for plotting bar chart   
         def analyse():
@@ -316,8 +352,10 @@ class Barchart:
             
         self.label5= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2)
         self.label5.place(relx = 0.5, rely = 0.15, anchor = CENTER)
-        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle2, command=select_file).place(relx = 0.5, rely = 0.07, anchor = CENTER)
-        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle2, command=analyse).place(relx = 0.5, rely = 0.40, anchor = CENTER)
+        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle2, command=select_file)
+        self.btn2.place(relx = 0.5, rely = 0.07, anchor = CENTER)
+        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle2, command=analyse)
+        self.btn3.place(relx = 0.5, rely = 0.40, anchor = CENTER)
                          
     #function to clear the current page to view the previous page elements
     def load_back(self):
@@ -340,14 +378,20 @@ class Piechart:
         self.master = master
         fontStyle1 = tkFont.Font(family="Lucida Grande", size=13)
         #back button to view previous page, that is the main page
-        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back).place(relx = 0.90, rely = 0.84, anchor = CENTER)
-        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2).place(relx = 0.3, rely = 0.15, anchor = CENTER)
-        self.label2 = Label(self.master, text="Variable one(labels): ", font = fontStyle2).place(relx = 0.3, rely = 0.20, anchor = CENTER)
-        self.label3= Label(self.master, text="Variable Two : ", font = fontStyle2).place(relx = 0.3, rely = 0.25, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
+        self.btn1.place(relx = 0.90, rely = 0.84, anchor = CENTER)
+        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2)
+        self.label1.place(relx = 0.3, rely = 0.15, anchor = CENTER)
+        self.label2 = Label(self.master, text="Variable one(labels): ", font = fontStyle2)
+        self.label2.place(relx = 0.3, rely = 0.20, anchor = CENTER)
+        self.label3= Label(self.master, text="Variable Two : ", font = fontStyle2)
+        self.label3.place(relx = 0.3, rely = 0.25, anchor = CENTER)
 
         #entry box for dependent and independent variavles
-        self.entry_1 = Entry(self.master).place(relx = 0.5, rely = 0.20, anchor = CENTER)
-        self.entry_2 = Entry(self.master).place(relx = 0.5, rely = 0.25, anchor = CENTER)
+        self.entry_1 = Entry(self.master)
+        self.entry_1.place(relx = 0.5, rely = 0.20, anchor = CENTER)
+        self.entry_2 = Entry(self.master)
+        self.entry_2.place(relx = 0.5, rely = 0.25, anchor = CENTER)
 
         #function for all the two way anova analysis
         def analyse():
@@ -380,9 +424,12 @@ class Piechart:
             mainfilename = tail
             selectedfilespace.set(mainfilename)
 
-        self.label6= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2).place(relx = 0.5, rely = 0.15, anchor = CENTER)
-        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file).place(relx = 0.5, rely = 0.07, anchor = CENTER)
-        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse).place(relx = 0.5, rely = 0.43, anchor = CENTER)
+        self.label6= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2)
+        self.label6.place(relx = 0.5, rely = 0.15, anchor = CENTER)
+        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file)
+        self.btn2.place(relx = 0.5, rely = 0.07, anchor = CENTER)
+        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse)
+        self.btn3.place(relx = 0.5, rely = 0.43, anchor = CENTER)
                         
     #function to clear the current page to view the previous page elements
     def load_back(self):
@@ -404,14 +451,20 @@ class simplelinearreg:
         fontStyle1 = tkFont.Font(family="Lucida Grande", size=13)
 
         #back button to view previous page, that is the main page
-        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back).place(relx = 0.90, rely = 0.84, anchor = CENTER)
-        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2).place(relx = 0.3, rely = 0.15, anchor = CENTER)
-        self.label2 = Label(self.master, text="Dependent Variable: ", font = fontStyle2).place(relx = 0.3, rely = 0.20, anchor = CENTER)
-        self.label3= Label(self.master, text="Independent Variable: ", font = fontStyle2).place(relx = 0.3, rely = 0.25, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
+        self.btn1.place(relx = 0.90, rely = 0.84, anchor = CENTER)
+        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2)
+        self.label1.place(relx = 0.3, rely = 0.15, anchor = CENTER)
+        self.label2 = Label(self.master, text="Dependent Variable: ", font = fontStyle2)
+        self.label2.place(relx = 0.3, rely = 0.20, anchor = CENTER)
+        self.label3= Label(self.master, text="Independent Variable: ", font = fontStyle2)
+        self.label3.place(relx = 0.3, rely = 0.25, anchor = CENTER)
 
         #entry box for dependent and independent variavles
-        self.entry_1 = Entry(self.master).place(relx = 0.5, rely = 0.20, anchor = CENTER)
-        self.entry_2 = Entry(self.master).place(relx = 0.5, rely = 0.25, anchor = CENTER)
+        self.entry_1 = Entry(self.master)
+        self.entry_1.place(relx = 0.5, rely = 0.20, anchor = CENTER)
+        self.entry_2 = Entry(self.master)
+        self.entry_2.place(relx = 0.5, rely = 0.25, anchor = CENTER)
 
         #function for all the one way anova analysis   
         def analyse():
@@ -466,13 +519,16 @@ class simplelinearreg:
                     space2 = tk.StringVar()
                     space1.set(summary)
                     space2.set(equation)
-                    self.label4= Label(newwindow, text="", textvariable=space1, font = fontStyle2).pack(fill="y")
-                    self.label5= Label(newwindow, text="", textvariable=space2, font = fontStyle2).pack(fill="y")
+                    self.label4= Label(newwindow, text="", textvariable=space1, font = fontStyle2)
+                    self.label4.pack(fill="y")
+                    self.label5= Label(newwindow, text="", textvariable=space2, font = fontStyle2)
+                    self.label5.pack(fill="y")
                     
                     for i in range(0, len(independent_var_list)):
                         independent_var_list[i] = tk.StringVar()
                         independent_var_list[i].set(predicted_vals[i])
-                        self.label6= Label(newwindow, text="", textvariable=independent_var_list[i], font = fontStyle2).pack(fill="y")
+                        self.label6= Label(newwindow, text="", textvariable=independent_var_list[i], font = fontStyle2)
+                        self.label6.pack(fill="y")
                         print(predicted_vals[i])
 
                     #set the height and width and run newwindow
@@ -497,12 +553,15 @@ class simplelinearreg:
             selectedfilespace.set(mainfilename)
 
         #Buttons
-        self.label7= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2).place(relx = 0.5, rely = 0.15, anchor = CENTER)
+        self.label7= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2)
+        self.label7.place(relx = 0.5, rely = 0.15, anchor = CENTER)
         #creating a checkbox to allow view boxplot
         #self.btn5 = tk.Checkbutton(self.master, text="show boxplot", command=boxplot, font=fontStyle)
         #self.btn5.place(relx = 0.5, rely = 0.33  , anchor = CENTER)
-        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file).place(relx = 0.5, rely = 0.07, anchor = CENTER)
-        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse).place(relx = 0.5, rely = 0.40, anchor = CENTER)
+        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file)
+        self.btn2.place(relx = 0.5, rely = 0.07, anchor = CENTER)
+        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse)
+        self.btn3.place(relx = 0.5, rely = 0.40, anchor = CENTER)
                         
     #function to clear the current page to view the previous page elements
     def load_back(self):
@@ -527,16 +586,24 @@ class multiplelinearreg:
         self.master = master
 
         #back button to view previous page, that is the main page
-        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back).place(relx = 0.90, rely = 0.84, anchor = CENTER)
-        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2).place(relx = 0.3, rely = 0.15, anchor = CENTER)
-        self.label2 = Label(self.master, text="Dependent Variable: ", font = fontStyle2).place(relx = 0.3, rely = 0.20, anchor = CENTER)
-        self.label3= Label(self.master, text="Independent Variable one : ", font = fontStyle2).place(relx = 0.3, rely = 0.25, anchor = CENTER)
-        self.label4= Label(self.master, text="Independent Variable two : ", font = fontStyle2).place(relx = 0.3, rely = 0.30, anchor = CENTER)
+        self.btn1 = tk.Button(self.master, text ="BACK", font = fontStyle1, command = self.load_back)
+        self.btn1.place(relx = 0.90, rely = 0.84, anchor = CENTER)
+        self.label1 = Label(self.master, text="File Selected:", font = fontStyle2)
+        self.label1.place(relx = 0.3, rely = 0.15, anchor = CENTER)
+        self.label2 = Label(self.master, text="Dependent Variable: ", font = fontStyle2)
+        self.label2.place(relx = 0.3, rely = 0.20, anchor = CENTER)
+        self.label3= Label(self.master, text="Independent Variable one : ", font = fontStyle2)
+        self.label3.place(relx = 0.3, rely = 0.25, anchor = CENTER)
+        self.label4= Label(self.master, text="Independent Variable two : ", font = fontStyle2)
+        self.label4.place(relx = 0.3, rely = 0.30, anchor = CENTER)
 
         #entry box for dependent and independent variavles
-        self.entry_1 = Entry(self.master).place(relx = 0.5, rely = 0.20, anchor = CENTER)
-        self.entry_2 = Entry(self.master).place(relx = 0.5, rely = 0.25, anchor = CENTER)
-        self.entry_3 = Entry(self.master).place(relx = 0.5, rely = 0.30, anchor = CENTER)
+        self.entry_1 = Entry(self.master)
+        self.entry_1.place(relx = 0.5, rely = 0.20, anchor = CENTER)
+        self.entry_2 = Entry(self.master)
+        self.entry_2.place(relx = 0.5, rely = 0.25, anchor = CENTER)
+        self.entry_3 = Entry(self.master)
+        self.entry_3.place(relx = 0.5, rely = 0.30, anchor = CENTER)
 
         #function for all the one way anova analysis   
         def analyse():
@@ -604,13 +671,16 @@ class multiplelinearreg:
                     space2 = tk.StringVar()
                     space1.set(summary)
                     space2.set(equation)
-                    self.label5= Label(newwindow, text="", textvariable=space1, font = fontStyle2).pack(fill="y")
-                    self.label6= Label(newwindow, text="", textvariable=space2, font = fontStyle2).pack(fill="y")
+                    self.label5= Label(newwindow, text="", textvariable=space1, font = fontStyle2)
+                    self.label5.pack(fill="y")
+                    self.label6= Label(newwindow, text="", textvariable=space2, font = fontStyle2)
+                    self.label6.pack(fill="y")
 
                     for i in range(0, len(independent_var1)):
                         independent_var1[i] = tk.StringVar()
                         independent_var1[i].set(predicted_vals[i])
-                        self.label7= Label(newwindow, text="", textvariable=independent_var1[i], font = fontStyle2).pack(fill="y")
+                        self.label7= Label(newwindow, text="", textvariable=independent_var1[i], font = fontStyle2)
+                        self.label7.pack(fill="y")
                         print(predicted_vals[i])
 
                     #set the height and width and run newwindow
@@ -634,12 +704,15 @@ class multiplelinearreg:
             mainfilename = tail
             selectedfilespace.set(mainfilename)
 
-        self.label8= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2).place(relx = 0.5, rely = 0.15, anchor = CENTER)
+        self.label8= Label(self.master, text="File Selected: ", textvariable=selectedfilespace, font = fontStyle2)
+        self.label8.place(relx = 0.5, rely = 0.15, anchor = CENTER)
         #creating a checkbox to allow view boxplot
         #self.btn5 = tk.Checkbutton(self.master, text="show boxplot", command=boxplot, font=fontStyle)
         #self.btn5.place(relx = 0.5, rely = 0.33  , anchor = CENTER)
-        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file).place(relx = 0.5, rely = 0.07, anchor = CENTER)
-        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse).place(relx = 0.5, rely = 0.40, anchor = CENTER)
+        self.btn2 = tk.Button(self.master,text='Open a File',font= fontStyle1, command=select_file)
+        self.btn2.place(relx = 0.5, rely = 0.07, anchor = CENTER)
+        self.btn3 = tk.Button(self.master,text='Analyse',font= fontStyle1, command=analyse)
+        self.btn3.place(relx = 0.5, rely = 0.40, anchor = CENTER)
                         
     #function to clear the current page to view the previous page elements
     def load_back(self):
